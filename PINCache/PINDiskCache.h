@@ -4,6 +4,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Nullability.h"
+#import "PINLengthy.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,7 +20,7 @@ typedef void (^PINDiskCacheBlock)(PINDiskCache *cache);
  A callback block which provides the cache, key and object as arguments
  */
 
-typedef void (^PINDiskCacheObjectBlock)(PINDiskCache *cache, NSString *key, id <NSCoding>  __nullable object, NSURL * __nullable fileURL);
+typedef void (^PINDiskCacheObjectBlock)(PINDiskCache *cache, NSString *key, id <NSCoding, PINLengthy>  __nullable object, NSURL * __nullable fileURL);
 
 /**
  `PINDiskCache` is a thread safe key/value store backed by the file system. It accepts any object conforming

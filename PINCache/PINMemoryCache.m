@@ -3,6 +3,7 @@
 //  Copyright (c) 2015 Pinterest. All rights reserved.
 
 #import "PINMemoryCache.h"
+#import "PINLengthy.h"
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_4_0
 #import <UIKit/UIKit.h>
@@ -283,9 +284,9 @@ NSString * const PINMemoryCachePrefix = @"com.pinterest.PINMemoryCache";
     });
 }
 
-- (void)setObject:(id)object forKey:(NSString *)key block:(PINMemoryCacheObjectBlock)block
+- (void)setObject:(id <PINLengthy>)object forKey:(NSString *)key block:(PINMemoryCacheObjectBlock)block
 {
-    [self setObject:object forKey:key withCost:0 block:block];
+    [self setObject:object forKey:key withCost:[object length] block:block];
 }
 
 - (void)setObject:(id)object forKey:(NSString *)key withCost:(NSUInteger)cost block:(PINMemoryCacheObjectBlock)block

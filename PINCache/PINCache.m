@@ -3,6 +3,7 @@
 //  Copyright (c) 2015 Pinterest. All rights reserved.
 
 #import "PINCache.h"
+#import "PINLengthy.h"
 
 NSString * const PINCachePrefix = @"com.pinterest.PINCache";
 NSString * const PINCacheSharedName = @"PINCacheShared";
@@ -95,7 +96,7 @@ NSString * const PINCacheSharedName = @"PINCacheShared";
                 return;
             
             if (object) {
-                [strongSelf->_diskCache fileURLForKey:key block:^(PINDiskCache *cache, NSString *key, id <NSCoding> object, NSURL *fileURL) {
+                [strongSelf->_diskCache fileURLForKey:key block:^(PINDiskCache *cache, NSString *key, id <NSCoding, PINLengthy> object, NSURL *fileURL) {
                     // update the access time on disk
                 }];
                 
@@ -109,7 +110,7 @@ NSString * const PINCacheSharedName = @"PINCacheShared";
             } else {
                 __weak PINCache *weakSelf = strongSelf;
                 
-                [strongSelf->_diskCache objectForKey:key block:^(PINDiskCache *cache, NSString *key, id <NSCoding> object, NSURL *fileURL) {
+                [strongSelf->_diskCache objectForKey:key block:^(PINDiskCache *cache, NSString *key, id <NSCoding, PINLengthy> object, NSURL *fileURL) {
                     PINCache *strongSelf = weakSelf;
                     if (!strongSelf)
                         return;
@@ -147,7 +148,7 @@ NSString * const PINCacheSharedName = @"PINCacheShared";
             dispatch_group_leave(group);
         };
         
-        diskBlock = ^(PINDiskCache *cache, NSString *key, id <NSCoding> object, NSURL *fileURL) {
+        diskBlock = ^(PINDiskCache *cache, NSString *key, id <NSCoding, PINLengthy> object, NSURL *fileURL) {
             dispatch_group_leave(group);
         };
     }
@@ -187,7 +188,7 @@ NSString * const PINCacheSharedName = @"PINCacheShared";
             dispatch_group_leave(group);
         };
         
-        diskBlock = ^(PINDiskCache *cache, NSString *key, id <NSCoding> object, NSURL *fileURL) {
+        diskBlock = ^(PINDiskCache *cache, NSString *key, id <NSCoding, PINLengthy> object, NSURL *fileURL) {
             dispatch_group_leave(group);
         };
     }
